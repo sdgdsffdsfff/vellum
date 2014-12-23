@@ -1,0 +1,125 @@
+<% include header.html %>
+<% include menu.html %>
+<script>
+  $(document).ready(function() {
+    if ($("#pagination")) {
+      var reg = /&currentpage=\d+/;
+      var url = window.location.origin+window.location.pathname+'?'+window.location.search.replace(reg,'').replace('?','');
+      var appid = <%= appid %> ;
+      var pagecount = <%= pagecount %> ;
+      var pagesize = <%= pagesize %> ;
+      var currentpage = <%= currentpage %> ;
+      var counts, pagehtml = "";
+      if (pagecount % pagesize == 0) {
+        counts = parseInt(pagecount / pagesize);
+      } else {
+        counts = parseInt(pagecount / pagesize) + 1;
+      }
+      //只有一页内容  
+      if (pagecount <= pagesize) {
+        pagehtml = "";
+      }
+      //大于一页内容  
+      if (pagecount > pagesize) {
+        if (currentpage > 1) {
+          pagehtml += '<li><a href="'+url+'&currentpage=' + (currentpage - 1) + '">上一页</a></li>';
+        }
+        for (var i = 0; i < counts; i++) {
+          if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+            if (i == currentpage - 1) {
+              pagehtml += '<li class="active"><a href="'+url+'&currentpage=' + (i + 1) + '">' + (i + 1) + '</a></li>';
+            } else {
+              pagehtml += '<li><a href="'+url+'&currentpage=' + (i + 1) + '">' + (i + 1) + '</a></li>';
+            }
+
+          }
+        }
+        if (currentpage < counts) {
+          pagehtml += '<li><a href="'+url+'&currentpage=' + (currentpage + 1) + '">下一页</a></li>';
+        }
+      }
+      $("#pagination").html(pagehtml);
+    }
+  });
+</script>
+<div class="container">
+  <div class="row">
+    <div class="page-header col-sm-12">
+      <%= appname%>--用户日志
+    </div>
+  </div>
+  <div class="row">
+    <form action="/admin/log/user/list/<%= appid%>/" method="GET" class="form-inline" role="form">
+      <div class="form-group">
+        <input type="text" value="<%= get['content'] || '' %>" class="form-control" name="search[content]" placeholder="详情">
+      </div>
+      <div class="form-group">
+        <input type="text" value="<%= get['operator'] || ''%>" class="form-control" name="search[operator]" placeholder="操作人">
+      </div>
+      <div class="form-group">
+        <select name="search[type]" class="form-control">
+          <option value="" >操作类型</option>
+          <% for (var i in actiontype ) { %>
+          <option value="<%= actiontype[i]['callname']%>" <% if (get['type']==actiontype[i]['callname']) { %>selected="selected"<% } %>><%= actiontype[i]['name']%></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="search[level]" class="form-control">
+          <option value="">日志级别</option>
+          <% for (var i in loglevel ) { %>
+          <option value="<%= i%>" <% if (get['level']==i) { %>selected="selected"<% } %> ><%= loglevel[i]%></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        从:<input type="date" name="search[starttime]" class="form-control" value="<%= get['starttime']%>">
+      </div>
+      <div class="form-group">
+        至:<input type="date" name="search[endtime]" class="form-control" value="<%= get['endtime']%>">
+      </div>
+      <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+  </div>
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>详情</th>
+          <th>操作类型</th>
+          <th>操作人</th>
+          <th>记录时间</th>
+          <th>日志级别</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (i in data ) { %>
+        <tr>
+          <td><%= data[i]['id']%></td>
+          <td><%= data[i]['content']%></td>
+          <td><%= data[i]['type']%></td>
+          <td><%= data[i]['operator']%></td>
+          <td><%= data[i]['createtime']%></td>
+          <td><%= loglevel[data[i]['level']]%></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      <ul class="pagination" id="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% include footer.html %>

@@ -1,0 +1,26 @@
+<% include header.html %>
+<% include menu.html %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header col-sm-12">一.应用接入</div>
+    <p><img src="/img/1.png" width="300" height="150"></p>
+    <p><img src="/img/2.png" width="300" height="150"></p>
+  </div>
+  <div class="row">
+    <div class="page-header col-sm-12">二.设置操作类型</div>
+    <p><img src="/img/3.png" width="300" height="150"></p>
+    <p><img src="/img/4.png" width="300" height="150"></p>
+    <p>操作类型是指日志记录操作的列表,例如用户发表文章的日志,操作类型的设置如下:</p>
+    <p>操作类型名: 添加文章</p>
+    <p>调用名: addarticle</p>
+    <p>操作类型并不是必须的,并不会影响日志存储操作类型,但如不设置,在查看日志时无法使用操作类型进行过滤</p>
+  </div>
+  <div class="row">
+    <div class="page-header col-sm-12">三.查看日志</div>
+    <p><img src="/img/5.png" width="300" height="150"></p>
+    <p>每个应用都分为用户日志和系统日志两个类型,他们的调用接口不同,分别用户存储用户的操作记录和系统级别的记录</p>
+  </div>
+</div>
+
+<% include footer.html %>

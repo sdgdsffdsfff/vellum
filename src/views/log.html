@@ -1,0 +1,31 @@
+<% include header.html %>
+<% include menu.html %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header col-sm-12">
+      请选择应用
+    </div>
+  </div>
+  <div class="row">
+    <% for (i in data ) { %>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= data[i]['name']%></h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <a href="/admin/log/user/list/<%= data[i]['appid']%>" class="btn btn-primary">用户日志</a>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <a href="/admin/log/sys/list/<%= data[i]['appid']%>" class="btn btn-primary">系统日志</a>
+            </div>
+          </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<% include footer.html %>

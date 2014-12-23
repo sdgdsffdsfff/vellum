@@ -1,0 +1,70 @@
+<% include header.html %>
+<% include menu.html %>
+<script>
+  $(function(){
+    $('.add').click(function(){
+      var appid = $('#appid').val();
+      var name = $('#name').val();
+      var callname = $('#callname').val();
+      $.post('/admin/actiontype/add',{appid:appid,name:name,callname:callname},function(msg){
+        if(msg > 0){
+          var num = $('tbody > tr').length;
+          var html='<tr> <td>'+num+'</td> <td>'+name+'</td> <td>'+callname+'</td> <td><button type="button" class="btn btn-sm btn-block btn-danger del" tid="'+msg+'">删除</button></td> </tr>';
+          $('tbody > tr:last').before(html);
+          $('#name').val('');
+          $('#callname').val('');
+        } 
+      });
+    });
+
+    $('tbody').on('click','.del',function(){
+      if(confirm('确定要删除?')){
+        var id = $(this).attr('tid');
+        var self=this;
+        $.post('/admin/actiontype/del',{id:id},function(msg){
+          if(msg){
+            $(self).parent().parent().remove();
+          }
+        });
+      }
+    });
+  })
+</script>
+<div class="container">
+  <div class="row">
+    <div class="page-header col-sm-12">
+      <p><%= data['name']%></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <input type="hidden" id="appid" value="<%= data['appid']%>">
+      <table class="table table-bordered">
+        <thead>
+          <th>#</th>
+          <th>操作类型名</th>
+          <th>操作调用名</th>
+          <th>编辑</th>
+        </thead>
+        <tbody>
+          <% for (var i in type) { %>
+          <tr>
+            <td><%= parseInt(i)+1 %></td>
+            <td><%= type[i]['name']%></td>
+            <td><%= type[i]['callname']%></td>
+            <td><button type="button" class="btn btn-sm btn-block btn-danger del" tid="<%= type[i]['id']%>">删除</button></td>
+          </tr>
+          <% } %>
+          <tr>
+            <td>#</td>
+            <td><input type="text" id="name" name="name"></td>
+            <td><input type="text" id="callname" name="callname"></td>
+            <td><button class="btn btn-sm btn-block btn-success pull-right add">增加</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% include footer.html %>

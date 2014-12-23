@@ -1,0 +1,29 @@
+<% include header.html %>
+<% include menu.html %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header col-sm-12">
+      <a href="/admin/app/add" class="btn btn-success pull-right">应用接入</a>
+    </div>
+  </div>
+  <div class="row">
+    <% for (i in data ) { %>
+    <div class="col-sm-4">
+      <div class="panel panel-success">
+        <div class="panel-heading"><%= data[i]['name']%></div>
+        <div class="panel-body">
+          <p>应用ID: <%= data[i]['appid']%></p>
+          <p>授权码: <%= data[i]['authcode']%></p>
+          <span class="pull-right">
+            <a href="/admin/app/setting/<%= data[i]['appid']%>" class="btn btn-link btn-lg glyphicon glyphicon-cog"></a>
+            <!-- <a class="btn btn-link btn-lg glyphicon glyphicon-trash"></a> -->
+          </span>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<% include footer.html %>

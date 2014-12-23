@@ -1,0 +1,11 @@
+{
+  "name": "vellum",
+  "version": "0.0.0",
+  "authors": [
+    "gloomyzerg <gloomyzerg@126.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
