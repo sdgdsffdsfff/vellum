@@ -8,9 +8,8 @@ vellum 是一个多站点多应用的统一日志平台,各个应用可以通过
 ```
 	//下载
 	git clone git@github.com:gloomyzerg/vellum.git
-	//安装依赖
-	cd /path/vellum
-	npm install
+	//安装
+	./install.sh
 ```
 2.将根目录下的```vellum.sql```导入数据库  
 3.修改根目录下的```config.json```中的数据库配置  
@@ -28,7 +27,7 @@ vellum 是一个多站点多应用的统一日志平台,各个应用可以通过
 	//默认是关闭debug模式的,此时是异步调用,接口会忽略错误,返回值总是success
 	//开启debug模式接口会返回详细信息(包括错误)
 	//$vellum->debug(); //开启debug
-	
+
 	$vellum->pushUserLog(日志详细内容,操作类型,操作人,日志级别);
 	$vellum->pushSysLog(日志详细内容,日志级别);
 
