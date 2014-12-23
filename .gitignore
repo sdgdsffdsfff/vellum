@@ -1,4 +1,5 @@
 node_modules/
-./public/bower_components/
-./build/
-./release.sh
+public/bower_components/
+build/
+release.sh
+config.json
