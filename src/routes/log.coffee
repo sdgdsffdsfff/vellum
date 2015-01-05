@@ -2,6 +2,7 @@ module.exports = (app) ->
   tool = require '../utils/tool'
   db = require '../utils/db'
   _ = require 'lodash'
+  moment = require 'moment'
 
   app.post '/log/write/user', (req, res) ->
     if !req.body.debug
@@ -18,7 +19,7 @@ module.exports = (app) ->
         params =
           appid: req.body.appid
           type: req.body.type || ''
-          createtime: tool.unixtime new Date
+          createtime: moment().format 'X'
           operator: req.body.operator || 0
           content: req.body.content || ''
           level: req.body.level
@@ -48,7 +49,7 @@ module.exports = (app) ->
           return false
         params =
           appid: req.body.appid
-          createtime: tool.unixtime new Date
+          createtime: moment().format 'X'
           content: req.body.content || ''
           level: req.body.level
         sql = 'insert into sysaction_' + req.body.appid + ' (appid,createtime,content,level) values (:appid,:createtime,:content,:level)'

@@ -54,7 +54,7 @@ module.exports = (app) ->
     return
 
   app.post '/admin/app/add', (req, res) ->
-    appid = String tool.unixtime new Date
+    appid = String moment().format 'X'
     authcode = (tool.md5 appid + Math.random() * 1000).substr 0,16
     createsyssqltpl = "CREATE TABLE `sysaction_##id` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `appid` varchar(255) NOT NULL DEFAULT '' COMMENT '应用ID', `createtime` int(10) NOT NULL COMMENT '创建时间', `content` text NOT NULL COMMENT '日志内容', `level` tinyint(1) NOT NULL COMMENT '日志级别', PRIMARY KEY (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统日志表';"
     createusersqltpl = "CREATE TABLE `useraction_##id` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT, `appid` varchar(255) NOT NULL DEFAULT '' COMMENT '应用ID', `type` varchar(255) NOT NULL DEFAULT '' COMMENT '操作类型', `createtime` int(10) NOT NULL COMMENT '创建时间', `operator` int(11) NOT NULL COMMENT '操作人', `content` text NOT NULL COMMENT '日志内容', `level` tinyint(1) NOT NULL COMMENT '日志级别', PRIMARY KEY (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户日志表';"
