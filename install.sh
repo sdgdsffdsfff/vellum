@@ -41,20 +41,9 @@ bower install --allow-root
 cd ..
 echo ${ok}
 
-echo '正在检查当前gulp环境...'
-gulp -v > /dev/null
-if [ $? -ne 0 ];then
-  echo '正在准备构建环境...'
-  npm install -g gulp
-fi
-echo ${ok}
-
-echo '编译中...'
-gulp build
-echo '编译完成...!'
 echo ''
 echo '建议使用PM2来管理本程序进程,PM2安装方法:'
 echo 'npm install pm2 -g'
 echo '启动程序:'
-echo 'pm2 start ./build/app.js'
+echo 'pm2 start run.js'
 echo ''

@@ -1,6 +1,6 @@
 {
   "name": "vellum",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "vellum日志平台",
   "keywords": [
     "log",
@@ -25,13 +25,7 @@
     "express": "~4.10.6",
     "mysql": "~2.5.4",
     "express-session": "~1.9.3",
-    "serve-favicon": "~2.2.0"
-  },
-  "devDependencies": {
-    "gulp": "~3.8.10",
-    "coffee-script": "~1.8.0",
-    "gulp-coffee": "~2.2.0",
-    "gulp-util": "~3.0.1",
-    "gulp-watch": "~3.0.0"
+    "serve-favicon": "~2.2.0",
+    "coffee-script": "~1.8.0"
   }
 }

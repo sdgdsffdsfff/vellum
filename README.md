@@ -11,9 +11,9 @@ vellum 是一个多站点多应用的统一日志平台,各个应用可以通过
 	//安装
 	./install.sh
 ```
-2.将根目录下的```vellum.sql```导入数据库  
+2.将根目录下的```install.sql```导入数据库  
 3.修改根目录下的```config.json```中的数据库配置  
-4.运行```node app.js```启动应用,程序将默认监听3000端口(可在app.js中修改)  
+4.运行```node run.js```启动应用,程序将默认监听3000端口(可在app.js中修改)  
 5.访问 http://yourip:port/admin/ 默认用户名密码均为admin  
 
 ###客户端使用
