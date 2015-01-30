@@ -1,6 +1,6 @@
 module.exports = (app) ->
   admin = require './admin'
   log = require './log'
-  log app
-  admin app
+  app.use log
+  app.use admin
   return
