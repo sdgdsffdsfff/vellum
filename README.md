@@ -28,6 +28,7 @@ vellum 是一个多站点多应用的统一日志平台,各个应用可以通过
 	//开启debug模式接口会返回详细信息(包括错误)
 	//$vellum->debug(); //开启debug
 
+	$vellum-setApp(appid,authcode);
 	$vellum->pushUserLog(日志详细内容,操作类型,操作人,日志级别);
 	$vellum->pushSysLog(日志详细内容,日志级别);
 

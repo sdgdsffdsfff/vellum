@@ -57,10 +57,10 @@ class Vellum {
 		$data=json_encode($data);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(  
-			'Content-Type: application/json; charset=utf-8',  
-			'Content-Length: ' . strlen($data))  
-		);  
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json; charset=utf-8',
+			'Content-Length: ' . strlen($data))
+		);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -73,5 +73,3 @@ class Vellum {
 		return $output;
 	}
 }
-
-

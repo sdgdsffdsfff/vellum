@@ -1,6 +1,6 @@
 {
   "name": "vellum",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "vellum日志平台",
   "keywords": [
     "log",
@@ -11,7 +11,7 @@
     "email": "gloomyzerg@126.com"
   },
   "scripts": {
-    "start": "node ./build/app.js"
+    "start": "node run.js"
   },
   "dependencies": {
     "MD5": "^1.2.1",
